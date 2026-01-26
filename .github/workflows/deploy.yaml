@@ -24,7 +24,7 @@ jobs:
         run: |
           aws ecr get-login-password --region us-west-1 | \
           docker login --username AWS --password-stdin \
-          349430015931.dkr.ecr.us-east-1.amazonaws.com
+          349430015931.dkr.ecr.us-west-1.amazonaws.com
 
       - name: Build Docker image
         run: docker build -t myapp .
@@ -37,7 +37,7 @@ jobs:
       - name: Push Docker image
         run: |
           docker push \
-          349430015931.dkr.ecr.us-west-1.amazonaws.com/docker/project:latest
+          349430015931.dkr.ecr.us-west-1.amazonaws.com/k8s/project:latest
 
           
 
