@@ -39,5 +39,16 @@ jobs:
           docker push \
           349430015931.dkr.ecr.us-west-1.amazonaws.com/k8s/project:latest
 
+      - name: Update kubeconfig
+        run: |
+          aws eks update-kubeconfig \
+          --region us-west-1 \
+          --name Amazon
+
+      - name: Deploy to EKS (Rolling Update)
+        run: |
+          kubectl set image deployment/my-app \
+          my-app=349430015931.dkr.ecr.us-west-1.amazonaws.com/k8s/project:${{ github.sha }}    
+
           
 
